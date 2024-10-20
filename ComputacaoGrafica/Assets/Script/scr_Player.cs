@@ -15,10 +15,16 @@ public class scr_Player : MonoBehaviour
     // Rigbody
     public Rigidbody rigidbody;
 
+    // Pontuação
+    private int score;
+    public float score_distance; // De quanto em quanto de distancia percorrida o jogador pontua
+    private Vector3 lest_pos_checked;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        lest_pos_checked = transform.position;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -43,8 +49,22 @@ public class scr_Player : MonoBehaviour
 
         // Atualiza a poisção da camera
         camera.transform.position = transform.position + new Vector3(0.0f, 1.9f, -3.0f);
+
+        // Checa se pontuo
+        checkScore();
+        Debug.Log($"Score: {score}");
     }
 
+    // Checa se percorreu a distancia para pontuar
+    void checkScore()
+    {
+        Vector3 curr_pos = transform.position;
+        if((curr_pos.z - lest_pos_checked.z) >= score_distance)
+        {
+            lest_pos_checked = transform.position;
+            score += 1;
+        }
+    }
 
     // Trata a colisão
     private void OnCollisionEnter(Collision collision)
