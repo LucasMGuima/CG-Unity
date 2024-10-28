@@ -99,5 +99,16 @@ public class scr_Player : MonoBehaviour
         {
             can_jump = true;
         }
+
+        if(collision.collider.tag == "Moeda")
+        {
+            
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        score += 10;
+        Destroy(other.gameObject);
     }
 }
