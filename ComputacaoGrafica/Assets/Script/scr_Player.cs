@@ -21,6 +21,7 @@ public class scr_Player : MonoBehaviour
     public Rigidbody rigidbody;
 
     // Pontuação
+    private float timer;
     private int score;
     public float score_distance; // De quanto em quanto de distancia percorrida o jogador pontua
     private float last_time;
@@ -36,15 +37,20 @@ public class scr_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Quaternion new_rotation = Quaternion.identity;
+
         // Rotaciona para esquerda e a direita
         if (Input.GetKey(KeyCode.A)){
-            // transform.Rotate(0.0f, -rotate_speed, 0.0f);
+            new_rotation = Quaternion.Euler(transform.rotation.x, -25.0f, transform.rotation.z);
             transform.position += new Vector3(-speed, 0.0f, 0.0f);
         }
-        if (Input.GetKey(KeyCode.D)){
-            // transform.Rotate(0.0f, rotate_speed, 0.0f);
+        if (Input.GetKey(KeyCode.D))
+        {
+            new_rotation = Quaternion.Euler(transform.rotation.x, 25.0f, transform.rotation.z);
             transform.position += new Vector3(speed, 0.0f, 0.0f);
         }
+
+        transform.rotation = new_rotation;
 
         // Pulo
         if (Input.GetKeyDown(KeyCode.Space) && can_jump)
@@ -54,13 +60,13 @@ public class scr_Player : MonoBehaviour
         }
 
         // Movimenta para a frente
-        // transform.position += transform.forward * speed;
+        //transform.position += transform.forward * speed;
 
         // Atualiza a poisção da camera
         camera.transform.position = transform.position + new Vector3(0.0f, 1.9f, -3.0f);
 
         // Checa se pontuo
-        checkScore(Time.deltaTime);
+        checkScore();
         scoreText.text = $"{score}";
 
         // Caiu
@@ -71,13 +77,13 @@ public class scr_Player : MonoBehaviour
     }
 
     // Checa se percorreu a distancia para pontuar
-    void checkScore(float time)
+    void checkScore()
     {
-        if((time - last_time) >= score_distance)
+        timer += Time.deltaTime;
+        if (timer >= 10)
         {
-            Debug.Log("Score");
-            last_time = time;
             score += 1;
+            timer = 0;
         }
     }
 
