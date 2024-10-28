@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca8f5bdbac7a440915d06fc6716345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0.05
   rotate_speed: 0.5
   jump_force: 300
   can_jump: 0
@@ -900,10 +900,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1188a6909ba80d34bb9c7089ae42f847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parede: {fileID: 2940369085910869222, guid: 14a7900c5ad62a74d83801cf6c385623, type: 3}
+  parede: {fileID: 2045991629054655078, guid: ee5eaf6903ed46d4e8b56e7487f2ea44, type: 3}
   max_x: 10
   min_x: -10
-  spawn_time: 1
+  spawn_time: 5
 --- !u!4 &1983839886
 Transform:
   m_ObjectHideFlags: 0
@@ -913,7 +913,7 @@ Transform:
   m_GameObject: {fileID: 1983839884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 2.5, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
